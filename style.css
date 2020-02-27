@@ -53,6 +53,13 @@ h1{
     border: 2px solid #fff;
     border-radius: 20%;
 }
+.empty{
+    width: 80%;
+    padding: 0.5rem;
+    margin: 4px auto;
+    border: 2px solid #fff;
+    border-radius: 20%;
+}
 .item_input{
     background: none;
     outline: none;

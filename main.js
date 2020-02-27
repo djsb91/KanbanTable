@@ -4,9 +4,13 @@ const container = document.querySelector('#todo');
 const container2 = document.querySelector('#doing');
 const container3 = document.querySelector('#done');
 
+
+
+
 class item{
     constructor(itemName){
         this.createDiv(itemName)
+        przesuwanie();
     }
     createDiv(itemName){
         let input = document.createElement('input');
@@ -17,7 +21,8 @@ class item{
 
         let itemBox = document.createElement('div');
         itemBox.classList.add('item');
-        itemBox.classList.add('empty');
+        itemBox.classList.add('fill');
+        itemBox.draggable = true;
 
         let editButton = document.createElement('button');
         editButton.innerHTML = "EDIT";
@@ -29,11 +34,11 @@ class item{
 
         let itemBoxempty = document.createElement('div');
         itemBoxempty.classList.add('empty');
-        itemBoxempty.innerHTML="lol";
+        // itemBoxempty.innerHTML="lol";
 
         let itemBoxempty2 = document.createElement('div');
         itemBoxempty2.classList.add('empty');
-        itemBoxempty2.innerHTML="lol";
+        // itemBoxempty2.innerHTML="lol";
 
         container.appendChild(itemBox);
         itemBox.appendChild(input);
@@ -53,6 +58,7 @@ class item{
     remove(item){
         container.removeChild(item);
     }
+    
 }
 
 function check(){
@@ -68,3 +74,52 @@ window.addEventListener('keydown', (e)=>{
         check();
     }
 })
+
+function przesuwanie(){
+
+    const fill = document.querySelector('.fill');
+    const empties = document.querySelectorAll('.empty');
+    console.log(empties);
+    // Fill listeners
+    fill.addEventListener('dragstart', dragStart);
+    fill.addEventListener('dragend', dragEnd);
+
+    // Loop through empties and call drag events
+
+    for(const empty of empties){
+        empty.addEventListener('dragover', dragOver);
+        empty.addEventListener('dragenter', dragEnter);
+        empty.addEventListener('dragleave', dragLeave);
+        empty.addEventListener('drop', dragDrop);
+    }
+
+    // Drag Functions
+
+    function dragStart(){
+        this.className += ' hold';
+        setTimeout(() => this.className = 'invisible', 0); 
+    }
+
+    function dragEnd(){
+        this.className = 'fill';
+    }
+
+    function dragOver(e){
+        e.preventDefault();
+        
+    }
+    function dragEnter(e){
+        e.preventDefault();
+        this.className += ' hovered';
+    }
+    function dragLeave(){
+        this.className = 'empty';
+    }
+    function dragDrop(){
+        this.className = 'empty';
+        this.append(fill);
+        
+    }
+
+}
+
