@@ -3,26 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tablica Kanban</title>
+    <title>Kanban Table</title>
     <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css"> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
     <h1><span class="styling">KANBAN</span>table</h1>
-  <div class="input_div">
-    <input type="text" class="input" placeholder="What Do You Want To Do...">
-    <button class="addButton"><i class="fas fa-plus"></i></button>
-  </div>
+    <div class="input_div">
+        <input type="text" class="input" placeholder="What Do You Want To Do...">
+        <button class="addButton"><i class="fas fa-plus"></i></button>
+    </div>
     <div class="container">
-        <div class="table" id="todo">
-            <div class="tableHead">Zaplanowane</div>
+        
+        <div class="column" id="todo">
+    
         </div>
-        <div class="table" id="doing">
-            <div class="tableHead">W trakcie</div>
+        
+        <div class="column" id="doing">
+        
         </div>
-        <div class="table" id="done">
-            <div class="tableHead">Skończone</div>
+        
+        <div class="column" id="done">
+        
         </div>
+
     </div>
     <script src="main.js"></script>
 </body>

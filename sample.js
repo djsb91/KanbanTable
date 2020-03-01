@@ -1,8 +1,6 @@
 const addButton = document.querySelector('.addButton');
 var input = document.querySelector('.input');
 const container = document.querySelector('#todo');
-const container2 = document.querySelector('#doing');
-const container3 = document.querySelector('#done');
 
 class item{
     constructor(itemName){
@@ -13,20 +11,12 @@ class item{
         input.value = itemName;
         input.disabled = true;
         input.classList.add('item_input');
-        input.classList.add('portlet-header');
-        input.classList.add('ui-sortable-handle');
-        input.classList.add('ui-widget-header');
-        input.classList.add('ui-corner-all');
         input.type = "text";
-
-           
-
 
         let itemBox = document.createElement('div');
         itemBox.classList.add('item');
+        itemBox.classList.add('fill');
         itemBox.draggable = true;
-
-           
 
         let editButton = document.createElement('button');
         editButton.innerHTML = "EDIT";
@@ -36,15 +26,21 @@ class item{
         removeButton.innerHTML = "REMOVE";
         removeButton.classList.add('removeButton');
 
-     
+        let itemBoxempty = document.createElement('div');
+        itemBoxempty.classList.add('empty');
+        // itemBoxempty.innerHTML="lol";
+
+        let itemBoxempty2 = document.createElement('div');
+        itemBoxempty2.classList.add('empty');
+        // itemBoxempty2.innerHTML="lol";
+
         
         container.appendChild(itemBox);
-        
         itemBox.appendChild(input);
         itemBox.appendChild(editButton);
         itemBox.appendChild(removeButton);
       
-        editButton.addEventListener('click',()=> this.edit(input));
+            editButton.addEventListener('click',()=> this.edit(input));
         removeButton.addEventListener('click',()=> this.remove(itemBox));
 
     }
@@ -53,11 +49,8 @@ class item{
     }
     remove(item){
         container.removeChild(item);
-        container2.removeChild(item);
-        container3.removeChild(item);
     }
     
-
 }
 
 function check(){
@@ -73,27 +66,3 @@ window.addEventListener('keydown', (e)=>{
         check();
     }
 })
-
-$( function() {
-    $( ".column" ).sortable({
-    connectWith: ".column",
-    handle: ".portlet-header",
-    cancel: ".portlet-toggle",
-    placeholder: "portlet-placeholder ui-corner-all"
-    });
-
-    $( ".portlet" )
-    .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
-    .find( ".portlet-header" )
-        .addClass( "ui-widget-header ui-corner-all" )
-        .prepend( "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
-
-    $( ".portlet-toggle" ).on( "click", function() {
-    var icon = $( this );
-    icon.toggleClass( "ui-icon-minusthick ui-icon-plusthick" );
-    icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
-    });
-} );
-
-
-// portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all
